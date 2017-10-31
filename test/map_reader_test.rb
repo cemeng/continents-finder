@@ -16,7 +16,7 @@ class MapReaderTest < Minitest::Test
 
       it 'exception\' message specify the error' do
         exception = assert_raises(Exception) { reader.read('test/input/map-with-10-lines-only.txt') }
-        assert_includes exception.message, 'Map file must has exactly 50 lines'
+        assert_includes exception.message, 'Map file must has exactly 50 rows'
       end
     end
 
@@ -25,9 +25,9 @@ class MapReaderTest < Minitest::Test
         assert_raises(Exception) { reader.read('test/input/map-with-invalid-content.txt') }
       end
 
-      it 'exception\'s message contain the line number of invalid line' do
+      it 'exception\'s message contain the row number of invalid row' do
         exception = assert_raises(Exception) { reader.read('test/input/map-with-invalid-content.txt') }
-        assert_includes exception.message, 'Invalid content on line 0'
+        assert_includes exception.message, 'Invalid content on row 0'
       end
     end
 

@@ -3,30 +3,30 @@ require_relative 'map_line_content_validator'
 # MapReader is a class that responsible for reading a map file
 class MapReader
   def read(filepath)
-    lines = File.readlines(filepath).map { |line| extract_land_position_content(line) }
-    validate lines
     lines
+    rows = File.readlines(filepath).map { |row| extract_map_content(row) }
+    validate rows
   end
 
   private
 
-  def extract_land_position_content(line)
-    line[2..82]
+  def extract_map_content(row)
+    row[2..82]
   end
 
-  def validate(lines)
-    validate_map_dimension lines
-    validate_content lines
+  def validate(rows)
+    validate_map_dimension rows
+    validate_content rows
   end
 
-  def validate_content(lines)
-    lines.each_with_index do |line, index|
-      raise MapReader::FileContentError, "Invalid content on line #{index}" unless MapLineContentValidator.valid?(line)
+  def validate_content(rows)
+    rows.each_with_index do |row, index|
+      raise MapReader::FileContentError, "Invalid content on row #{index}" unless MapLineContentValidator.valid?(row)
     end
   end
 
-  def validate_map_dimension(lines)
-    raise MapReader::FileContentError, 'Map file must has exactly 50 lines.' if lines.size != 50
+  def validate_map_dimension(rows)
+    raise MapReader::FileContentError, 'Map file must has exactly 50 rows.' if rows.size != 50
   end
 
   class FileContentError < StandardError
