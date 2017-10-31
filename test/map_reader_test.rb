@@ -36,9 +36,9 @@ class MapReaderTest < Minitest::Test
         assert_silent { reader.read('test/input/valid-map.txt') }
       end
 
-      it 'returns an array of land positions' do
+      it 'returns an array of lands' do
         result = reader.read('test/input/valid-map.txt')
-        assert_kind_of Position, result.first
+        assert_kind_of Land, result.first
       end
     end
   end

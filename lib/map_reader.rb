@@ -1,12 +1,12 @@
 require_relative 'map_line_content_validator'
-require_relative 'land_positions_extractor'
+require_relative 'lands_extractor'
 
 # MapReader is a class that responsible for reading a map file
 class MapReader
   def read(filepath)
     rows = File.readlines(filepath).map { |row| extract_map_content(row) }
     validate rows
-    LandPositionsExtractor.new(rows).extract
+    LandsExtractor.new(rows).extract
   end
 
   private
