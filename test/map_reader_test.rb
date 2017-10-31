@@ -31,8 +31,15 @@ class MapReaderTest < Minitest::Test
       end
     end
 
-    it 'does not raise an error when file content is valid' do
-      assert_kind_of Array, reader.read('test/input/valid-map.txt')
+    describe 'when file is valid' do
+      it 'does not raise an error' do
+        assert_silent { reader.read('test/input/valid-map.txt') }
+      end
+
+      it 'returns an array of land positions' do
+        result = reader.read('test/input/valid-map.txt')
+        assert_kind_of Position, result.first
+      end
     end
   end
 end
