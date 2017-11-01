@@ -1,7 +1,7 @@
 require_relative 'map_reader'
 
-# ContinentFinder responsible for finding a continent given a map file
-class ContinentFinder
+# ContinentsFinder responsible for finding a continent given a map file
+class ContinentsFinder
   def initialize(filepath)
     @lands = MapReader.new.read(filepath)
     @continent_count = 0
