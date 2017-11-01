@@ -74,9 +74,34 @@ If you need to run individual test, run the following:
 ruby test/name-of-the-test.rb
 ```
 
-## Design
+## Solution Design
 
-TBC
+The solution is two step processes.
+
+### Extract Land information from the file
+
+```MapReader.read(filename)``` is the function that responsibles for:
+* Reading the world map file
+* Getting the map content from each row - ignoring the line number at the beginning and at the end of each line.
+* Validates the content of the map
+* Returns an array of ```Land``` - ```LandsExtractor``` is the class responsible for the extraction of ```Land``` from cleansed map rows.
+
+### Calculate Continents
+
+```ContinentsFinder#stats``` is the main function that returns the continents stats found in a map.
+
+The method reads an array of ```Land``` and finds the continent using the following approach:
+* Iterate the ```Land``` array
+* Check if a ```Land``` has been marked as belonging to a continent or not.
+  * If it is not, the following happens:
+    * Add the land to a continent (```add_to_continent``` method). See more about this below.
+    * Check the adjacent lands, apply ```add_to_continent``` to them if they are not marked.  This is done **recursively**.
+  * If it is continue.
+
+Adding a land to continent means, setting the ```continent``` variable on the ```Land``` instance.
+
+This continent variable is simply an integer value, it incremented whenever a new continent is 'discovered', that is
+the loop inside ```find_continents``` finds an unmarked land.
 
 ## License
 
