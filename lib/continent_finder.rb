@@ -13,7 +13,7 @@ class ContinentFinder
   end
 
   def stats
-    message = ["There are #{count} Continents"]
+    message = [header]
     (1..count).each do |continent_number|
       message << "Continent #{continent_number} has #{land_count_for(continent_number)} +"
     end
@@ -21,6 +21,10 @@ class ContinentFinder
   end
 
   private
+
+  def header
+    count == 1 ? 'There is 1 Continent' : "There are #{count} Continents"
+  end
 
   def find_continents
     @lands.each do |land|
