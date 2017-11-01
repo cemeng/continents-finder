@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'land'
 
 # LandsExtractor responsibles for taking an array of map rows and return the land positions only (ignoring the

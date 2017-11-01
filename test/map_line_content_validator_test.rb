@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/map_line_content_validator'
 require 'minitest/autorun'
 

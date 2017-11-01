@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative '../lib/continents_finder'
 require 'minitest/autorun'
 
@@ -13,9 +15,9 @@ class ContinentsFinderTest < Minitest::Test
     describe 'for a map with multiple continents' do
       it 'returns the statistic of contintents' do
         finder = ContinentsFinder.new('test/input/2-continents-map.txt')
-        expected_result = [ 'There are 2 Continents',
-                            'Continent 1 has 220 +',
-                            'Continent 2 has 266 +' ].join("\n")
+        expected_result = ['There are 2 Continents',
+                           'Continent 1 has 220 +',
+                           'Continent 2 has 266 +'].join("\n")
         assert_equal expected_result, finder.stats
       end
     end

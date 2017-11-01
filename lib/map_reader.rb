@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'map_line_content_validator'
 require_relative 'lands_extractor'
 
