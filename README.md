@@ -1,6 +1,6 @@
-# Continent Finder
+# Continents Finder
 
-This project provides an implementation of a continent finder given a world map.
+This project provides an implementation of a continents finder given a world map.
 
 An example of a valid world file can be found at ```test/input/valid-map.txt```.
 The map file is in the following format (only showing first 3 rows):
