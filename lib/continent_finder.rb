@@ -12,6 +12,14 @@ class ContinentFinder
     @continent_count
   end
 
+  def stats
+    message = ["There are #{count} Continents"]
+    (1..count).each do |continent_number|
+      message << "Continent #{continent_number} has #{land_count_for(continent_number)} +"
+    end
+    message.join("\n")
+  end
+
   private
 
   def find_continents
@@ -21,6 +29,10 @@ class ContinentFinder
         add_to_continent(land, @continent_count)
       end
     end
+  end
+
+  def land_count_for(continent)
+    @lands.count { |l| l.continent == continent }
   end
 
   # add_to_cotinent adds a land to continent by setting the continent marker on the land
