@@ -59,11 +59,13 @@ class ContinentsFinder
   def add_to_continent(land, continent)
     land.continent = continent
     positions_around_of(land).each do |position|
-      @lands.each do |l|
-        if !l.belongs_to_a_continent? && position[:x] == l.x && position[:y] == l.y
-          add_to_continent(l, continent)
-        end
-      end
+      land_to_add = unmarked_land_in(position)
+      add_to_continent(land_to_add, continent) if land_to_add
     end
+  end
+
+  def unmarked_land_in(position)
+    land = @lands.find { |l| position[:x] == l.x && position[:y] == l.y }
+    land && !land.belongs_to_a_continent? ? land : nil
   end
 end
